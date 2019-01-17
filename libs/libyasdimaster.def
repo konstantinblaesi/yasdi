@@ -1,0 +1,89 @@
+LIBRARY yasdimaster.dll
+
+EXPORTS
+   FindDeviceSN
+   _FindDeviceSN=FindDeviceSN   
+   DoStartDeviceDetection
+   _DoStartDeviceDetection=DoStartDeviceDetection
+   DoStopDeviceDetection
+   _DoStopDeviceDetection=DoStopDeviceDetection
+   DoFreeze
+   _DoFreeze=DoFreeze
+   DoMasterCmd
+   _DoMasterCmd=DoMasterCmd
+   FindChannelName
+   _FindChannelName=FindChannelName
+   GetChannelAccessRights
+   _GetChannelAccessRights=GetChannelAccessRights
+   GetChannelHandles
+   _GetChannelHandles=GetChannelHandles
+   GetChannelHandlesEx
+   _GetChannelHandlesEx=GetChannelHandlesEx
+   GetChannelMask
+   _GetChannelMask=GetChannelMask
+   GetChannelName
+   _GetChannelName=GetChannelName
+   GetChannelStatText
+   _GetChannelStatText=GetChannelStatText
+   GetChannelStatTextCnt
+   _GetChannelStatTextCnt=GetChannelStatTextCnt
+   GetChannelUnit
+   _GetChannelUnit=GetChannelUnit
+   GetChannelValRange
+   _GetChannelValRange=GetChannelValRange
+   GetChannelValue
+   _GetChannelValue=GetChannelValue
+   GetChannelValueAsync
+   _GetChannelValueAsync=GetChannelValueAsync
+   GetChannelValueTimeStamp
+   _GetChannelValueTimeStamp=GetChannelValueTimeStamp
+   GetDeviceHandles
+   _GetDeviceHandles=GetDeviceHandles
+   GetDeviceName
+   _GetDeviceName=GetDeviceName
+   GetDeviceSN
+   _GetDeviceSN=GetDeviceSN
+   GetDeviceType
+   _GetDeviceType=GetDeviceType
+   GetMasterStateIndex
+   _GetMasterStateIndex=GetMasterStateIndex
+   GetMasterStateText
+   _GetMasterStateText=GetMasterStateText
+   RemoveDevice
+   _RemoveDevice=RemoveDevice
+   SetChannelValue
+   _SetChannelValue=SetChannelValue
+   SetChannelValueString
+   _SetChannelValueString=SetChannelValueString
+   yasdiDoMasterCmdEx
+   _yasdiDoMasterCmdEx=yasdiDoMasterCmdEx
+   yasdiMasterGetDriver
+   _yasdiMasterGetDriver=yasdiMasterGetDriver
+   yasdiMasterGetDriverName
+   _yasdiMasterGetDriverName=yasdiMasterGetDriverName
+   yasdiMasterInitialize
+   _yasdiMasterInitialize=yasdiMasterInitialize
+   yasdiMasterSetDriverOffline
+   _yasdiMasterSetDriverOffline=yasdiMasterSetDriverOffline
+   yasdiMasterSetDriverOnline
+   _yasdiMasterSetDriverOnline=yasdiMasterSetDriverOnline
+   yasdiMasterShutdown
+   _yasdiMasterShutdown=yasdiMasterShutdown
+   yasdiReset
+   _yasdiReset=yasdiReset
+   yasdiMasterSetAccessLevel   
+   _yasdiMasterSetAccessLevel=yasdiMasterSetAccessLevel
+   yasdiMasterGetChannelPropertyDouble
+   _yasdiMasterGetChannelPropertyDouble=yasdiMasterGetChannelPropertyDouble
+   yasdiMasterAddEventListener
+   _yasdiMasterAddEventListener=yasdiMasterAddEventListener
+   yasdiMasterRemEventListener
+   _yasdiMasterRemEventListener=yasdiMasterRemEventListener
+   yasdiMasterGetVersion
+   _yasdiMasterGetVersion=yasdiMasterGetVersion
+   
+
+
+
+   
+   

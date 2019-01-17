@@ -1,0 +1,26 @@
+#include <winver.h>
+#include "version.h" /* YASDI's version file */
+#include "copyright.h"
+
+#define VERSIONINFO_1	1
+VERSIONINFO_1 VERSIONINFO        
+
+FILEVERSION    LIB_YASDI_VER1, LIB_YASDI_VER2, LIB_YASDI_VER3, LIB_YASDI_VER4
+PRODUCTVERSION LIB_YASDI_VER1, LIB_YASDI_VER2, LIB_YASDI_VER3, LIB_YASDI_VER4
+                                 
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_DLL
+{
+ BLOCK "StringFileInfo"
+ {
+  BLOCK "040704E4"
+  {
+   VALUE "CompanyName", "SMA Solar Technology AG\000\000"
+   VALUE "FileDescription", "YASDI (Yet Another SMAData Implementation)\000"
+   VALUE "FileVersion", LIB_YASDI_VERSION
+   VALUE "ProductName", "YASDI\000"
+   VALUE "ProductVersion", LIB_YASDI_VERSION
+   VALUE "LegalCopyright", SMA_COPYRIGHT_SHORT "\000\000"
+  }
+ }
+}

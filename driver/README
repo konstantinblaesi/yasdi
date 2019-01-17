@@ -1,0 +1,24 @@
+This directory contains all YASDI bus drivers (as modules) which are 
+currently available. Most drivers are platform specific. These drivers
+are plugins, compiled as library (DLL, SO,...) and loaded during YASDI starts.
+Of course it's also possible to "embedd" these driver into an static compiled
+YASDI...
+
+
+Driver                  Description
+-------------------------------------------------------------------------
+serial_darwin.c/h       serial driver for Apple MacOSX
+serial_linux.c/h        serial driver for Linux 
+serial_windows.c/h      serial driver for windows32
+serial_windowsCE.c/h    serial driver for windowsCE
+serial_bsp.c/h          serial driver for "Board support packages" (SMA internal)
+serial_ethernut.c/h     serial driver for "Ethernut" (an embedded device)
+ip_generic.c/h          IP (UDP) driver for "SMA Ethernet PiggyBacks", 
+                        works on Linux/MacOSX/Windows
+ip_linux.c/h            (DEPRECATED) IP (UDP) driver for POSIX 
+                        systems only (Linux/MacOSX), don't use it anymore
+ip_windows.c/h          (DEPRECATED) IP (UDP) driver for Windows32 system ,
+                        don't use it anymore 
+                       
+
+

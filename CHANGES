@@ -1,0 +1,116 @@
+YASDI Changelog
+---------------
+
+
+23.02.2010, V1.8.1:
+  * reworked router functions
+  * adjustments for using CMake version 2.6
+  * new config: Misc.ChannelListDir for channel list cache
+  * fixed bug in router when using device with net address "0000"
+  * fixed shutdown problem in master API library
+  * fixed memory problem in master API function "GetChannelName()"
+  * added mutexes while access to YASDI bus drivers
+  * added new master function "yasdiMasterGetVersion()" 
+  * added POSIX AIO support for serial driver (experimental)
+  * added mutex destroy in "os_thread_MutexDestroy()" in POSIX layer
+  * changed version to "1.8.1 Build 9"
+  * removed Borland C++ Builder 5 Port (generic-cmake is now the only port)
+  * fixed bug in INI file support
+  * Linux serial support: Better checking for port availability
+
+
+01.09.2007,
+15.04.2008,  V1.8.0:
+  * Fixed some bugs while trimming status texts
+  * CMake crossbuild system used. (see "www.cmake.org" for more details)
+    Older systems built (under "projects") are removed and not supported 
+    anymore...
+  * New asynchronous API functions reading channel values overlapped 
+    (see function "GetChannelValueAsync" in "libs/yasdimaster.h")
+  * Many changes in SMAData Master to process channel values
+    asynchronously
+  * New event system added (for API and backend bus drivers)
+    (see function "yasdiMasterAddEventListener" in libs/yasdimaster.h)
+  * Automatically create directory "devices" for channel list cache if
+    not available  
+  * Removed bug on Windows port. "[Misc] DebugOutput=..." in config file
+    was not properly functioning
+  * Bug removed when parsing channel names with full lenght
+
+
+01.02.2007,  V1.7.2:
+  * Changed Licence from "SMA" to LGPL
+  * Minor changes...
+  
+  
+30.12.2006,  V1.7.1: (not public)
+  * Sharing channel list structures, saving space
+  * New packet buffer management
+  * New channel list and device list iterators with much 
+    smaller memory usage
+  
+  
+12.11.2006,  V1.7.0: (not public)
+  * Some speed optimizations 
+  * New generic IP (Ethernet) driver for all systems
+  * Added new time system using milli seconds speedup delay
+  * Added container for new SMAData2 protocol  
+  * Added new message queues
+  * Added needed waiting of 1 seconds after sending CMD_SYNC_ONLINE
+    (optional deselectable)
+  * Added function to change security level via API function
+      "yasdiMasterSetAccessLevel()"
+  * Added functions for getting SMAData1 specific informations:
+      "yasdiMasterGetChannelPropertyInt()"
+      "yasdiMasterGetChannelPropertyDouble()":         
+  * Enhanced Bus Driver API with events:
+       DRE_PEER_ADDED, 
+       DRE_PEER_REMOVED, 
+       DRE_NEW_INPUT
+  * New optional language mapping: "C++" for YASDI Master C-API
+  * New Master-API-Function for async events
+        "yasdiMasterAddEventListener"
+        "yasdiMasterRemEventListener"
+    
+
+26.06.2006, V1.6.0: (not public)
+  * Invalid channel lists are now accepted (default is rejected) with config:
+       [Misc]
+       acceptInvalidChannelLists=1
+  * reworked CPU specific functions (big endian, little endian).
+    Now auto converting...
+  * pass thru functions for Bus Drivers in the Master Library:
+      "yasdiMasterGetDriver();
+      "yasdiMasterGetDriverName()"
+      "yasdiMasterSetDriverOffline()"
+      "yasdiMasterSetDriverOnline()"
+      
+
+    
+19.05.2006, V1.5.0 (not public)
+  * Added "mingw" support for YASDI ("Minimalistic GNU on Windows" ) 
+  * Optional cheching of parameter value range (now default)
+    Can be switched of with
+	 --- cut ---  
+	    [Misc]
+   	 checkValueRange=0
+    --- cut ---
+
+
+04.03.2005, V1.4.0 (not public)
+  * Added new support for "MacOSX" (Darwin)  
+  * New API function removing device from currently list of known devices
+    "RemoveDevice()"..    
+  * New support for WindowsCE
+
+  
+01.12.2002, V1.3.0 (public)
+  * New API function yasdiDoMasterCmdEx()
+  * Fixed bug scanning sunnynet packet
+  
+
+01.04.2001: V1.0.0 (not public)
+  * Project started, first version
+
+
+
