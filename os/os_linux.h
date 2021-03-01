@@ -24,7 +24,12 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <pthread.h>
-#include <termio.h>
+#ifndef LIBC_MUSL
+# include <termio.h>
+#else
+# include <termios.h>
+# include <sys/ioctl.h>
+#endif
 #include <sys/time.h>
 #include <stdarg.h>
 
