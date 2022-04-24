@@ -1,9 +1,14 @@
 name: Build Image using Containerfile
 on: [push]
 
+env:
+  REGISTRY_USER: quayuser
+  IMAGE_REGISTRY: quay.io
+  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+
 jobs:
   build:
-    name: Build image
+    name: Build container
     runs-on: ubuntu-latest
 
     steps:
@@ -14,5 +19,17 @@ jobs:
         with:
           image: yasdi
           tags: latest ${{ github.sha }}
+          archs: amd64, arm64
           containerfiles: |
             ./container/alpine.Containerfile
+  login:
+    name: Log in to container registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to registry
+        uses: redhat-actions/podman-login@v1
+        with:
+          username: konstantinblaesi
+          password: ${{ secrets.GHCR_TOKEN }}
+          registry: ghcr.io
+
