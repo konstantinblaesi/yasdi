@@ -25,6 +25,7 @@ jobs:
   login:
     name: Log in to container registry
     runs-on: ubuntu-latest
+    environment: github container registry
     steps:
       - name: Log in to registry
         uses: redhat-actions/podman-login@v1
