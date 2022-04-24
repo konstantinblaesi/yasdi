@@ -72,3 +72,14 @@ Create a configuration file `/yasdi/yasdi.ini` on the host adapting [the example
 Run the container image mounting the configuration file's directory
 
 `podman run --rm -it --name yasdi -v /yasdi/yasdi.ini:/yasdi/yasdi.ini:rw yasdi yasdishell`
+
+### Common issues
+
+Some error messages produced by the YASDI SDK when running yasdishell are confusing because they do not necessarily identify the root cause.
+
+Error message
+>ERROR: YASDI ini file was not found or is unreadable!
+
+Possible Causes:
+* YASDI ini file unavailable (missing, permission issues)
+* The YASDI SDK failed to initialize because libyasdi* library files could not be loaded

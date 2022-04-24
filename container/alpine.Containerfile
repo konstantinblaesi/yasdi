@@ -1,6 +1,6 @@
 ARG ALPINE_TAG=3.15.4
 ARG YASDI_VERSION=1.8.1
-FROM alpine:$ALPINE_TAG as build
+FROM docker.io/alpine:$ALPINE_TAG as build
 LABEL maintainer="Konstantin Bläsi <kblaesi@gmail.com>"
 
 ENV YASDI_VERSION_MAJOR 1
