@@ -7,9 +7,10 @@ env:
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
 jobs:
-  build:
-    name: Build container
+  build-and-publish-image:
+    name: Build and publish image
     runs-on: ubuntu-latest
+    environment: github container registry
 
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +20,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y qemu-user-static
 
-      - name: Buildah Action
+      - name: Build image
+        id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
           image: yasdi
@@ -27,15 +29,12 @@ jobs:
           archs: amd64, arm64
           containerfiles: |
             ./container/alpine.Containerfile
-  login:
-    name: Log in to container registry
-    runs-on: ubuntu-latest
-    environment: github container registry
-    steps:
-      - name: Log in to registry
-        uses: redhat-actions/podman-login@v1
+
+      - name: Publish image
+        uses: redhat-actions/push-to-registry@v2
         with:
+          image: ${{ steps.build-image.outputs.image }}
+          tags: ${{ steps.build-image.outputs.tags }}
+          registry: ghcr.io/konstantinblaesi
           username: konstantinblaesi
           password: ${{ secrets.GHCR_TOKEN }}
-          registry: ghcr.io
-
