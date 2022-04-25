@@ -1,40 +1,50 @@
-name: Build Image using Containerfile
+name: Build and publish container images
 on: [push]
 
 env:
-  REGISTRY_USER: quayuser
-  IMAGE_REGISTRY: quay.io
-  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+  REGISTRY_REPOSITORY: ghcr.io/konstantinblaesi
+  REGISTRY_IMAGE: yasdi
+  REGISTRY_USER: ${{ secrets.GHCR_USER }}
+  REGISTRY_PASSWORD: ${{ secrets.GHCR_TOKEN }}
 
 jobs:
-  build-and-publish-image:
-    name: Build and publish image
+  build:
+    name: Build container image
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+        containerFile: [alpine, debian]
     runs-on: ubuntu-latest
     environment: github container registry
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install qemu dependency
+      - name: Install qemu
+        if: ${{ matrix.arch == 'arm64' }}
         run: |
           sudo apt-get update
           sudo apt-get install -y qemu-user-static
+
+      - name: Set short commit sha
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
       - name: Build image
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: yasdi
-          tags: latest ${{ github.sha }}
-          archs: amd64, arm64
+          image: $REGISTRY_IMAGE
+          tags: ${{ matrix.arch }}-latest ${{ matrix.arch }}-${{ steps.vars.outputs.sha_short }}
+          archs: ${{ matrix.arch }}
           containerfiles: |
-            ./container/alpine.Containerfile
+            ./container/${{ containerFile }}.Containerfile
 
       - name: Publish image
         uses: redhat-actions/push-to-registry@v2
         with:
           image: ${{ steps.build-image.outputs.image }}
           tags: ${{ steps.build-image.outputs.tags }}
-          registry: ghcr.io/konstantinblaesi
-          username: konstantinblaesi
-          password: ${{ secrets.GHCR_TOKEN }}
+          registry: $REGISTRY_REPOSITORY
+          username: $REGISTRY_USER
+          password: $REGISTRY_PASSWORD
