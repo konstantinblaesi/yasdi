@@ -1,13 +1,15 @@
 name: Build and publish container images
-on: [push]
+on:
+  release:
+    types: [published]
 
 env:
   REGISTRY_REPOSITORY: ghcr.io/konstantinblaesi
   REGISTRY_IMAGE: yasdi
 
 jobs:
-  build:
-    name: Build container image
+  build-and-publish:
+    name: Build and publish container image
     strategy:
       matrix:
         arch: [amd64, arm64]
@@ -33,7 +35,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           image: ${{ env.REGISTRY_IMAGE }}
-          tags: ${{ matrix.arch }}-latest ${{ matrix.arch }}-${{ steps.vars.outputs.sha_short }}
+          tags: latest ${{ github.ref  }}
           archs: ${{ matrix.arch }}
           containerfiles: |
             ./container/${{ matrix.containerFile }}.Containerfile
@@ -44,5 +46,5 @@ jobs:
           image: ${{ steps.build-image.outputs.image }}
           tags: ${{ steps.build-image.outputs.tags }}
           registry: ${{ env.REGISTRY_REPOSITORY }}
-          username: ${{ secrets.GHCR_USER }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          username: ${{ secrets.GH_USER }}
+          password: ${{ secrets.GH_TOKEN }}

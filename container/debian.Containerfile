@@ -1,12 +1,5 @@
 ARG BASE_IMAGE=docker.io/debian:stable-slim
-ARG YASDI_VERSION=1.8.1
 FROM $BASE_IMAGE as build
-LABEL maintainer="Konstantin Bläsi <kblaesi@gmail.com>"
-
-ENV YASDI_VERSION_MAJOR 1
-ENV YASDI_VERSION_MINOR 8
-ENV YASDI_VERSION_PATCH 1
-ENV YASDI_VERSION $YASDI_VERSION_MAJOR.$YASDI_VERSION_MINOR.$YASDI_VERSION_PATCH
 
 ENV YASDI_SRC /yasdi
 
@@ -25,6 +18,10 @@ RUN make -j$(getconf _NPROCESSORS_ONLN)
 RUN make install
 
 FROM $BASE_IMAGE as publish
+LABEL maintainer="Konstantin Bläsi <kblaesi@gmail.com>"
+LABEL org.opencontainers.image.source https://github.com/konstantinblaesi/yasdi
+LABEL org.opencontainers.image.description YASDI image containing yasdishell and the library
+
 COPY --from=build /usr/bin/yasdishell /usr/bin/
 
 COPY --from=build \

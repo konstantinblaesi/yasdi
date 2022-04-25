@@ -61,7 +61,7 @@ If sma.ini is in a different place run using `./yasdishell /path/to/sma.ini`
 
 From the root of the repository:
 
-`podman build -t yasdi -f docker/alpine.Dockerfile .`
+`podman build -t yasdi -f container/alpine.Containerfile .`
 
 (If you you docker, replace 'podman' with 'docker')
 
@@ -72,6 +72,19 @@ Create a configuration file `/yasdi/yasdi.ini` on the host adapting [the example
 Run the container image mounting the configuration file's directory
 
 `podman run --rm -it --name yasdi -v /yasdi/yasdi.ini:/yasdi/yasdi.ini:rw yasdi yasdishell`
+
+### Using images built and published by githubs CI/CD
+
+Install from the command line:
+
+`podman pull ghcr.io/konstantinblaesi/yasdi:latest`
+
+(replace 'podman' with 'docker' when using docker)
+
+Use as base image in Dockerfile:
+`FROM ghcr.io/konstantinblaesi/yasdi:latest`
+
+See the [github container registry](https://github.com/konstantinblaesi/yasdi/pkgs/container/yasdi) for all the available tags
 
 ### Common issues
 
