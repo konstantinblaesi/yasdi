@@ -3,7 +3,7 @@
 
 //This file must be processed with CMAKE. 
 
-#if 1 
+#if 0 
 //with debug output...
 #define DEBUG 1
 #endif
