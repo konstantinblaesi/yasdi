@@ -31,7 +31,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           image: ${{ env.REGISTRY_IMAGE }}
-          tags: latest ${{ github.ref  }}
+          tags: latest ${{ github.ref_name  }}
           archs: ${{ matrix.arch }}
           containerfiles: |
             ./container/${{ matrix.containerFile }}.Containerfile
