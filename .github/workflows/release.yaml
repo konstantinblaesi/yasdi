@@ -15,7 +15,7 @@ jobs:
         arch: [amd64, arm64]
         containerFile: [alpine, debian]
     runs-on: ubuntu-latest
-    environment: github container registry
+    environment: github
 
     steps:
       - uses: actions/checkout@v2
