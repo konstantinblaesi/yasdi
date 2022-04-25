@@ -4,8 +4,6 @@ on: [push]
 env:
   REGISTRY_REPOSITORY: ghcr.io/konstantinblaesi
   REGISTRY_IMAGE: yasdi
-  REGISTRY_USER: ${{ secrets.GHCR_USER }}
-  REGISTRY_PASSWORD: ${{ secrets.GHCR_TOKEN }}
 
 jobs:
   build:
@@ -45,6 +43,6 @@ jobs:
         with:
           image: ${{ steps.build-image.outputs.image }}
           tags: ${{ steps.build-image.outputs.tags }}
-          registry: $REGISTRY_REPOSITORY
-          username: $REGISTRY_USER
-          password: $REGISTRY_PASSWORD
+          registry: ${{ env.REGISTRY_REPOSITORY }}
+          username: ${{ secrets.GHCR_USER }}
+          password: ${{ secrets.GHCR_TOKEN }}
