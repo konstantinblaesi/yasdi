@@ -38,7 +38,7 @@ jobs:
           tags: ${{ matrix.arch }}-latest ${{ matrix.arch }}-${{ steps.vars.outputs.sha_short }}
           archs: ${{ matrix.arch }}
           containerfiles: |
-            ./container/${{ containerFile }}.Containerfile
+            ./container/${{ matrix.containerFile }}.Containerfile
 
       - name: Publish image
         uses: redhat-actions/push-to-registry@v2
