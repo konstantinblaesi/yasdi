@@ -7,10 +7,10 @@
 
 #define LIB_YASDI_VER1 1
 #define LIB_YASDI_VER2 8
-#define LIB_YASDI_VER3 1
-#define LIB_YASDI_VER4 9
+#define LIB_YASDI_VER3 2
+#define LIB_YASDI_VER4 0
 
-#define LIB_YASDI_VERSION "1.8.1"
-#define LIB_YASDI_VERSION_FULL "1.8.1Build9"
+#define LIB_YASDI_VERSION "1.8.2"
+#define LIB_YASDI_VERSION_FULL "1.8.2Build0"
 
 #endif

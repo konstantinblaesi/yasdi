@@ -27,19 +27,19 @@ LABEL org.opencontainers.image.description YASDI image containing yasdishell and
 COPY --from=build /usr/bin/yasdishell /usr/bin/
 
 COPY --from=build \
-    /usr/lib/libyasdi.so.1.8.1 \
-    /usr/lib/libyasdi_drv_ip.so.1.8.1 \
-    /usr/lib/libyasdi_drv_serial.so.1.8.1 \
-    /usr/lib/libyasdimaster.so.1.8.1  /usr/lib/
+    /usr/lib/libyasdi.so.1.8.2 \
+    /usr/lib/libyasdi_drv_ip.so.1.8.2 \
+    /usr/lib/libyasdi_drv_serial.so.1.8.2 \
+    /usr/lib/libyasdimaster.so.1.8.2  /usr/lib/
 
-RUN ln -s libyasdi.so.1.8.1 /usr/lib/libyasdi.so.1
+RUN ln -s libyasdi.so.1.8.2 /usr/lib/libyasdi.so.1
 RUN ln -s libyasdi.so.1 /usr/lib/libyasdi.so
 
-RUN ln -s libyasdi_drv_ip.so.1.8.1 /usr/lib/libyasdi_drv_ip.so.1
+RUN ln -s libyasdi_drv_ip.so.1.8.2 /usr/lib/libyasdi_drv_ip.so.1
 RUN ln -s libyasdi_drv_ip.so.1 /usr/lib/libyasdi_drv_ip.so
 
-RUN ln -s libyasdi_drv_serial.so.1.8.1 /usr/lib/libyasdi_drv_serial.so.1
+RUN ln -s libyasdi_drv_serial.so.1.8.2 /usr/lib/libyasdi_drv_serial.so.1
 RUN ln -s libyasdi_drv_serial.so.1 /usr/lib/libyasdi_drv_serial.so
 
-RUN ln -s libyasdimaster.so.1.8.1 /usr/lib/libyasdimaster.so.1
+RUN ln -s libyasdimaster.so.1.8.2 /usr/lib/libyasdimaster.so.1
 RUN ln -s libyasdimaster.so.1 /usr/lib/libyasdimaster.so
