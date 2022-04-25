@@ -1,7 +1,7 @@
 name: Build and publish container images
-on:
-  release:
-    types: [published]
+on: push
+#  release:
+#    types: [published]
 
 env:
   REGISTRY_REPOSITORY: ghcr.io/konstantinblaesi
@@ -12,7 +12,7 @@ jobs:
     name: Build and publish container image
     strategy:
       matrix:
-        arch: [amd64, arm64]
+        arch: [i386, amd64, arm/v6, arm/v7, arm64]
         containerFile: [alpine, debian]
     runs-on: ubuntu-latest
     environment: github container registry
@@ -25,10 +25,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y qemu-user-static
-
-      - name: Set short commit sha
-        id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
       - name: Build image
         id: build-image
