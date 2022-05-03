@@ -10,7 +10,7 @@ jobs:
     name: Build and publish container image
     strategy:
       matrix:
-        arch: [386, arm/v6, arm/v7]
+        arch: [arm]
         containerFile: [alpine, debian]
     runs-on: ubuntu-latest
     environment: github
@@ -31,6 +31,7 @@ jobs:
           image: ${{ env.REGISTRY_IMAGE }}
           tags: ${{ matrix.containerFile }}-latest ${{ matrix.containerFile }}-${{ github.ref_name  }}
           archs: ${{ matrix.arch }}
+          oci: true
           containerfiles: |
             ./container/${{ matrix.containerFile }}.Containerfile
 
