@@ -1,0 +1,44 @@
+name: Build and publish container images
+on: push
+
+env:
+  REGISTRY_REPOSITORY: ghcr.io/konstantinblaesi
+  REGISTRY_IMAGE: yasdi
+
+jobs:
+  build-and-publish:
+    name: Build and publish container image
+    strategy:
+      matrix:
+        arch: [386, arm/v6, arm/v7]
+        containerFile: [alpine, debian]
+    runs-on: ubuntu-latest
+    environment: github
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install qemu
+        if: ${{ matrix.arch == 'arm64' }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-user-static
+
+      - name: Build image
+        id: build-image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ${{ env.REGISTRY_IMAGE }}
+          tags: ${{ matrix.containerFile }}-latest ${{ matrix.containerFile }}-${{ github.ref_name  }}
+          archs: ${{ matrix.arch }}
+          containerfiles: |
+            ./container/${{ matrix.containerFile }}.Containerfile
+
+      - name: Publish image
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build-image.outputs.image }}
+          tags: ${{ steps.build-image.outputs.tags }}
+          registry: ${{ env.REGISTRY_REPOSITORY }}
+          username: ${{ secrets.GH_USER }}
+          password: ${{ secrets.GH_TOKEN }}
